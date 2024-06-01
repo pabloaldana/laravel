@@ -27,5 +27,21 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+Route::get('/naturales', function () {
+    return view('naturales');
+});
+Route::get('/historia', function () {
+    return view('historia');
+});
+Route::get('/matematica', function () {
+    return view('matematica');
+});
+Route::get('/lengua', function () {
+    return view('lengua');
+});
+Route::get('/literatura', function () {
+    return view('literatura');
+});
 
-require __DIR__.'/auth.php';
+
+require __DIR__ . '/auth.php';
