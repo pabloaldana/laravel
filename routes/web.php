@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AreaController;
+use App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,5 +44,6 @@ Route::get('/literatura', function () {
     return view('literatura');
 });
 
-
+Route::resource('areas', AreaController::class);
+Route::resource('posts', PostController::class);
 require __DIR__ . '/auth.php';
