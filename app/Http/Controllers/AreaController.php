@@ -27,8 +27,10 @@ class AreaController extends Controller
             'nombre' => 'required|string|max:255',
         ]);
 
-        $area = Area::create($validated);
-        return redirect()->route('areas.show', $area);
+        Area::create($validated);
+
+        // Redirigir al dashboard después de guardar
+        return redirect()->route('dashboard')->with('success', 'Área creada exitosamente.');
     }
 
     // Mostrar una área específica
