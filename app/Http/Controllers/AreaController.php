@@ -25,10 +25,11 @@ class AreaController extends Controller
     {
         $validated = $request->validate([
             'nombre' => 'required|string|max:255',
+            'image' => 'required|string|max:255',
         ]);
 
         $area = Area::create($validated);
-        return redirect()->route('areas.show', $area);
+        return redirect()->route('areas.index', $area);
     }
 
     // Mostrar una área específica
