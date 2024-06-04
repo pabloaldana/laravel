@@ -12,7 +12,7 @@
 
     <div class="grid grid-cols-3 gap-10 p-10">
         @foreach ($areas as $area)
-        <div class="max-w-sm rounded overflow-hidden shadow-lg text-center">
+        <div class="max-w-sm rounded overflow-hidden shadow-lg text-center border-2 border-white">
             <a href='/{{$area->nombre}}'>
                 <img src="{{ asset('images/areas/' . $area->image) }}" alt="Naturales" class="w-full h-auto bg-cover rounded-lg">
                 <div class="px-6 py-4">
