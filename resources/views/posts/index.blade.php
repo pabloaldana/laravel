@@ -28,8 +28,50 @@
                     </div>
                 </div>
             </a>
+            <div>
+                <button type="button" onclick="confirmDelete('{{$post->id}}')" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                    Eliminar
+                </button>
+
+            </div>
             @endforeach
         </div>
     </div>
 
 </x-app-layout>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function confirmDelete(postId) {
+        Swal.fire({
+            title: "¿Estás seguro de borrar el post?",
+            text: "¡No podrás revertir esto!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Sí, bórralo!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`/posts/${postId}`)
+                    .then(response => {
+                        Swal.fire(
+                            "¡Borrado!",
+                            "Tu post ha sido eliminado.",
+                            "success"
+                        ).then(() => {
+                            location.reload();
+                        });
+                    })
+                    .catch(error => {
+                        Swal.fire(
+                            "Error",
+                            `Hubo un problema al borrar el post con el id ${postId}.`,
+                            "error"
+                        );
+                    });
+            }
+        });
+    }
+</script>
