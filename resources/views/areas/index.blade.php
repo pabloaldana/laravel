@@ -3,16 +3,12 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Tablo de Areas') }}
         </h2>
+
     </x-slot>
-
-
-    <!-- @foreach ($areas as $area)
-    {{$area->nombre}}
-    @endforeach -->
 
     <div class="grid grid-cols-3 gap-10 p-10">
         @foreach ($areas as $area)
-        <div class="max-w-sm rounded overflow-hidden shadow-lg text-center">
+        <div class="max-w-sm rounded overflow-hidden shadow-lg text-center border-2 border-white">
             <a href='/{{$area->nombre}}'>
                 <img src="{{ asset('images/areas/' . $area->image) }}" alt="Naturales" class="w-full h-auto bg-cover rounded-lg">
                 <div class="px-6 py-4">
@@ -30,11 +26,6 @@
         Crear Area
     </a>
 </x-app-layout>
-
-
-
-
-
 
 
 <!-- <div class="grid grid-cols-3 gap-10 p-10">
