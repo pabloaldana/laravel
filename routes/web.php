@@ -3,12 +3,28 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AreaController;
-use App\Http\Controllers\PostController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/y', [AreaController::class, 'index1']);
+Route::get('/categoria/{id}',function(){
+   return 'El id de la categoria es {id}';
+});
+
+//, [AreaController::class, 'index1']);
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -17,27 +33,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::resource('posts', PostController::class);
 });
 
-Route::get('/naturales', function () {
-    return view('naturales');
-});
-Route::get('/historia', function () {
-    return view('historia');
-});
-Route::get('/matematica', function () {
-    return view('matematica');
-});
-Route::get('/lengua', function () {
-    return view('lengua');
-});
-Route::get('/literatura', function () {
-    return view('literatura');
-});
-
-Route::resource('areas', AreaController::class);
-Route::resource('posts', PostController::class);
-
-
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

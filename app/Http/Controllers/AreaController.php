@@ -13,6 +13,11 @@ class AreaController extends Controller
         $areas = Area::all();
         return view('areas.index', compact('areas'));
     }
+    public function index1()
+    {
+        $areas = Area::all();
+        return view('welcome', compact('areas'));
+    }
 
     // Mostrar un formulario para crear una nueva área
     public function create()
