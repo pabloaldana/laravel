@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @vite('resources/css/app.css')
-    <title>Laravel</title>
+    <title>Pizarra</title>
 </head>
 
 <body class="dark:bg-gray-900">
-    <!-- Navigation -->
+
     @if (Route::has('login'))
     <div class="w-full bg-gray-100 dark:bg-gray-800 p-6 text-right z-10 fixed top-0 left-0">
         @auth
@@ -25,6 +25,7 @@
 
     <div class="pt-24">
         <h1 class="text-center text-4xl font-bold text-gray-800 dark:text-gray-200">ACA TENER LAS CATEGORIAS PARA Q LAS PUEDAN VER TODOS ANTES DE LOG</h1>
+
     </div>
 </body>
 
