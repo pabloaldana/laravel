@@ -10,33 +10,43 @@
         </div>
     </x-slot>
 
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-12">
-        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg grid grid-cols-2 gap-10 p-10">
-            @foreach ($posts as $post)
-            <a href="{{ route('posts.show', $post->id) }}" class="block">
-                <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200">
-                    <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white dark:bg-gray-700">
-                        <div class="px-6 py-4">
-                            <div class="font-bold text-xl mb-2 text-gray-800 dark:text-gray-200">{{ $post->titulo }}</div>
-                            <p class="text-gray-700 dark:text-gray-300 text-base">
-                                {{ $post->texto }}
-                            </p>
-                        </div>
-                        <div class="px-6 pt-4 pb-2">
-                            <span class="inline-block bg-blue-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2">Grado: {{ $post->grado }}</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <div>
-                <button type="button" onclick="confirmDelete('{{$post->id}}')" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                    Eliminar
-                </button>
-
+    <div class="flex flex-col items-center justify-center pt-4">
+        <div class="container mx-auto p-4">
+            <div class="overflow-x-auto w-full">
+                <table class="min-w-full bg-white">
+                    <thead class="bg-gray-800 text-white">
+                        <tr>
+                            <th class="w-1/6 py-3 px-4 uppercase font-semibold text-sm text-center">Id</th>
+                            <th class="w-1/4 py-3 px-4 uppercase font-semibold text-sm text-center">Titulo</th>
+                            <th class="w-1/4 py-3 px-4 uppercase font-semibold text-sm text-center">Texto</th>
+                            <th class="w-1/6 py-3 px-4 uppercase font-semibold text-sm text-center">Grado</th>
+                            <th class="w-1/4 py-3 px-4 uppercase font-semibold text-sm text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                        @foreach($posts as $post)
+                        <tr>
+                            <td class="w-1/6 py-3 px-4 text-center">{{ $post->id }}</td>
+                            <td class="w-1/4 py-3 px-4 text-center">{{ $post->titulo }}</td>
+                            <td class="w-1/4 py-3 px-4 text-center">{{ $post->texto }}</td>
+                            <td class="w-1/6 py-3 px-4 text-center">{{ $post->grado }}</td>
+                            <td class="w-1/4 py-3 px-4 text-center flex justify-center space-x-2">
+                                <a href="{{ route('posts.edit', $post->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Editar</a>
+                                <form action="{{ route('posts.destroy', $post->id) }}" method="POST" class="inline-block">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="button" onclick="confirmDelete('{{$post->id}}')" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
-            @endforeach
         </div>
     </div>
+
+
 
 </x-app-layout>
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Area;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -16,11 +17,9 @@ class PostController extends Controller
     // Listar todos los posts
     public function index()
     {
-        $userId = auth()->id();
-        $posts = Post::where('user_id', $userId)->get();
+        $posts = Post::where('user_id', Auth::id())->get();
         return view('posts.index', compact('posts'));
     }
-
     // Mostrar un formulario para crear un nuevo post
     public function create()
     {
@@ -67,9 +66,13 @@ class PostController extends Controller
             return redirect()->route('posts.index')->withErrors('No tienes permiso para editar este post.');
         }
 
-        $areas = Area::all(); // Obtener todas las áreas de la base de datos
+        // Obtener todas las áreas de la base de datos
+        $areas = Area::all();
+
         return view('posts.edit', compact('post', 'areas'));
     }
+
+
 
     // Actualizar un post existente
     public function update(Request $request, Post $post)
@@ -78,13 +81,13 @@ class PostController extends Controller
             'titulo' => 'required|string|max:255',
             'texto' => 'required|string',
             'grado' => 'required|integer|min:1|max:7',
-            'user_id' => 'required|exists:users,id',
             'area_id' => 'required|exists:areas,id',
         ]);
 
         $post->update($validated);
-        return redirect()->route('posts.show', $post);
+        return redirect()->route('posts.index')->with('success', 'Post actualizado con éxito');
     }
+
 
     // Eliminar un post
     public function destroy(string $id)
