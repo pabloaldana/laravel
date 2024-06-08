@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.background-image {
+    background-image: url('/public/images/fondos/fondo1.jpg');
+    background-repeat: repeat;
+    background-size: auto;
+}

@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,16 +16,16 @@ use App\Http\Controllers\AreaController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/y', [AreaController::class, 'index1']);
-Route::get('/categoria/{id}',function(){
-   return 'El id de la categoria es {id}';
-});
+Route::get('/', [AreaController::class, 'index1']);
+Route::get('/categoria/post/{post_id}', [PostController::class, 'showPost']);
 
-//, [AreaController::class, 'index1']);
+Route::get('/categoria/{area_id}', [PostController::class, 'getPostsByAreas']);
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-
+    
     public function __construct()
     {
-        $this->middleware('auth');
+       // $this->middleware('auth');
     }
     // Listar todos los posts
     public function index()
@@ -55,7 +55,8 @@ class PostController extends Controller
             return redirect()->route('posts.index')->withErrors('No tienes permiso para ver este post.');
         }
 
-        return view('posts.show', compact('post'));
+        //return view('posts.show', compact('post'));
+        return (print_r ($post));
     }
 
     // Mostrar un formulario para editar un post existente
@@ -94,5 +95,29 @@ class PostController extends Controller
         } else {
             return response()->json(['error' => 'Error deleting post.'], 500);
         }
+    }
+
+ 
+    public function getPostsByAreas($area_id)
+    {
+        //Recupero los posts que coincidan con el ID 
+        $posts = Post::where('area_id', $area_id)->get();
+
+        //return response()->json($posts);
+        return view('posts.posts', compact('posts'));
+
+    }
+
+    public function showPost($post_id)
+    {
+        //Recupero los posts que coincidan con el ID 
+        //$post = Post::where('id', $post_id)->get();
+
+        $post = Post::findOrFail($post_id);
+        
+        //return response()->json($posts);
+        
+        return view('posts.showP', compact('post'));
+        //return ($post);
     }
 }

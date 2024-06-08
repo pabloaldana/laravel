@@ -40,8 +40,10 @@ class AreaController extends Controller
     // Mostrar una área específica
     public function show(Area $area)
     {
-        return view('areas.show', compact('area'));
+        //return view('areas.show', compact('area'));
+        return ('Llegaste al show del AreaController');
     }
+   
 
     // Mostrar un formulario para editar una área existente
     public function edit(Area $area)
