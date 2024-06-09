@@ -14,6 +14,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             @foreach($posts as $post)
+            @if ($post->publicado)
             <div class="bg-white rounded-lg shadow-lg overflow-hidden min-h-[300px]">
                 <div class="p-4 flex flex-col justify-between h-full">
                     <div class="bg-slate-200 p-2 text-blue-700 text-xl font-bold mb-2 text-center">{{ $post->titulo }}</div>
@@ -23,6 +24,7 @@
                     <a href="{{ route('posts.show', $post->id) }}" class="text-blue-500 text-right hover:underline">Seguir Leyendo...</a>
                 </div>
             </div>
+            @endif
             @endforeach
         </div>
 

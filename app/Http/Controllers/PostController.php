@@ -80,9 +80,18 @@ class PostController extends Controller
             'texto' => 'required|string',
             'grado' => 'required|integer|min:1|max:7',
             'area_id' => 'required|exists:areas,id',
+            'publicado' => 'sometimes|boolean', // Validación para el campo publicado
         ]);
 
-        $post->update($validated);
+        // Actualiza el post con los datos validados
+        $post->update([
+            'titulo' => $validated['titulo'],
+            'texto' => $validated['texto'],
+            'grado' => $validated['grado'],
+            'area_id' => $validated['area_id'],
+            'publicado' => $request->has('publicado') ? true : false, // Si 'publicado' está presente, establece en true; de lo contrario, false
+        ]);
+
         return redirect()->route('posts.index')->with('success', 'Post actualizado con éxito');
     }
 
