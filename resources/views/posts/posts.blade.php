@@ -10,7 +10,7 @@
                         <div class="bg-slate-200 p-2 text-blue-700 text-xl font-bold mb-2 text-center">{{ $post->titulo }}</div>
                         <div class="text-black-200 text-m mb-4">{!! Str::limit(strip_tags($post->texto), 200) !!}</div>
                         <div class="text-blue-700 text-l font-bold mb-2">Texto para {{$post->grado}} grado</div>
-                        <a href="/categoria/post/{{$post->id}}" class="text-blue-500 text-right hover:underline">Seguir Leyendo...</a>
+                        <a href="/areas/post/{{$post->id}}" class="text-blue-500 text-right hover:underline">Seguir Leyendo...</a>
                     </div>
                 </div>
                 @endforeach
