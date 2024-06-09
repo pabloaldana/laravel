@@ -1,28 +1,29 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Posteo: {{ $post->titulo }}
-        </h2>
-        <a href="{{ route('posts.edit', $post->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Editar Post
-        </a>
-        <a href="{{ route('posts.edit', $post->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Eliminar Post
-        </a>
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-    </x-slot>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @vite('resources/css/app.css')
+    <title>{{ $post->titulo }} - Posts</title>
+</head>
 
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-12">
-        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-            <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200">
-                <div class="font-bold text-2xl mb-4 text-gray-800 dark:text-gray-200">{{ $post->titulo }}</div>
-                <p class="text-gray-700 dark:text-gray-300 text-base">
-                    {{ $post->texto }}
-                </p>
-                <div class="mt-4">
-                    <span class="inline-block bg-blue-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2">Grado: {{ $post->grado }}</span>
-                </div>
+<body class="bg-gray-100" style="background-image: url('{{ asset('images/fondos/fondo1.jpg') }}')">
+    <div class="flex flex-col items-center justify-center min-h-screen pt-4 bg-black bg-opacity-30">
+        <div class="container mx-auto mt-5 w-max">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h1 class="text-3xl font-bold mb-4 text-center">{{ $post->titulo }}</h1>
+                <div class="text-blue-700 text-xl font-bold mb-4 text-left">Texto para {{$post->grado}} grado</div>
+                <div class="text-black-200 text-2xl mb-4 text-align">{!! $post->texto !!}</div>
+
             </div>
+
         </div>
+        <button onclick="history.back()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold  rounded md:py-4 md:px-8 lg:py-6 lg:px-12 lg:text-2xl mt-4">
+            Volver
+        </button>
     </div>
-</x-app-layout>
+
+</body>
+
+</html>

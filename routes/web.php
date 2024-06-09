@@ -32,5 +32,7 @@ Route::get('/', [AreaController::class, 'indexWelcome'])->name('welcome');
 // Ruta para mostrar los detalles de un área específica sin autenticación
 Route::get('/areas/{area}', [AreaController::class, 'show'])->name('areas.show');
 
+Route::get('/areas/post/{id}', [PostController::class, 'show'])->name('posts.show');
+
 // Archivo de rutas de autenticación
 require __DIR__ . '/auth.php';
