@@ -5,10 +5,10 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\AreaController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [AreaController::class, 'index1']);
 
-Route::get('/areas/post/{post_id}', [PostController::class, 'showPost']);
-Route::get('/areas/{area_id}', [PostController::class, 'getPostsByAreas']);
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -25,5 +25,9 @@ Route::middleware('auth')->group(function () {
     // Rutas para áreas
     Route::resource('areas', AreaController::class);
 });
+
+Route::get('/', [AreaController::class, 'index1']);
+Route::get('/area/{area_id}', [PostController::class, 'getPostsByAreas']);
+Route::get('/area/post/{post_id}', [PostController::class, 'showPost']);
 
 require __DIR__ . '/auth.php';
