@@ -22,6 +22,13 @@ class AreaController extends Controller
         return view('welcome', compact('areas'));
     }
 
+    // Mostrar los detalles de un área específica y sus posts
+    public function show(Area $area)
+    {
+        $posts = Post::where('area_id', $area->id)->get();
+        return view('areas.show', compact('area', 'posts'));
+    }
+
     // Mostrar un formulario para crear una nueva área
     public function create()
     {
@@ -56,11 +63,7 @@ class AreaController extends Controller
 
 
     // Mostrar una área específica
-    public function show(Area $area)
-    {
-        $posts = Post::where('area_id', $area->id)->get();
-        return view('areas.show', compact('area', 'posts'));
-    }
+
 
     // Mostrar un formulario para editar una área existente
     public function edit(Area $area)

@@ -5,8 +5,6 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\AreaController;
 use Illuminate\Support\Facades\Route;
 
-// Ruta principal para cargar todas las áreas en la vista welcome.blade.php
-Route::get('/', [AreaController::class, 'indexWelcome'])->name('welcome');
 
 // Ruta para el dashboard (requiere autenticación)
 Route::get('/dashboard', function () {
@@ -23,9 +21,15 @@ Route::middleware('auth')->group(function () {
     // Rutas para los posts
     Route::resource('posts', PostController::class);
 
-    // Rutas para las áreas
-    Route::resource('areas', AreaController::class);
+    // Rutas para las áreas, incluyendo la creación, edición, actualización y eliminación
+    Route::resource('areas', AreaController::class)->except(['show']);
 });
+
+// Ruta principal para cargar todas las áreas en la vista welcome.blade.php
+Route::get('/', [AreaController::class, 'indexWelcome'])->name('welcome');
+
+// Ruta para mostrar los detalles de un área específica sin autenticación
+Route::get('/areas/{area}', [AreaController::class, 'show'])->name('areas.show');
 
 // Archivo de rutas de autenticación
 require __DIR__ . '/auth.php';
