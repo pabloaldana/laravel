@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Area;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,6 +15,18 @@ class AreaController extends Controller
         $areas = Area::where('user_id', Auth::id())->get();
 
         return view('areas.index', compact('areas'));
+    }
+    public function indexWelcome()
+    {
+        $areas = Area::all();
+        return view('welcome', compact('areas'));
+    }
+
+    // Mostrar los detalles de un área específica y sus posts
+    public function show(Area $area)
+    {
+        $posts = Post::where('area_id', $area->id)->get();
+        return view('areas.show', compact('area', 'posts'));
     }
 
     // Mostrar un formulario para crear una nueva área
@@ -50,10 +63,7 @@ class AreaController extends Controller
 
 
     // Mostrar una área específica
-    public function show(Area $area)
-    {
-        return view('areas.show', compact('area'));
-    }
+
 
     // Mostrar un formulario para editar una área existente
     public function edit(Area $area)

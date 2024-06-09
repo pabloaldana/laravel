@@ -6,7 +6,11 @@ export default {
         "./resources/**/*.vue",
     ],
     theme: {
-        extend: {},
+        extend: {
+            backgroundImage: {
+                "custom-bg": "url('/images/fondos/fondo1.jpg')",
+            },
+        },
     },
     plugins: [],
 };
