@@ -51,12 +51,9 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::findOrFail($id);
-        if ($post->user_id !== auth()->id()) {
-            return redirect()->route('posts.index')->withErrors('No tienes permiso para ver este post.');
-        }
-
         return view('posts.show', compact('post'));
     }
+
 
 
     // Mostrar un formulario para editar un post existente
