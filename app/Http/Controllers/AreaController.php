@@ -97,9 +97,13 @@ class AreaController extends Controller
     }
 
     // Eliminar una área
-    public function destroy(Area $area)
+    public function destroy(string $id)
     {
-        $area->delete();
-        return redirect()->route('areas.index');
+        $area = Area::findOrFail($id);
+        if ($area->delete()) {
+            return response()->json(['success' => 'area deleted successfully.']);
+        } else {
+            return response()->json(['error' => 'Error deleting area.'], 500);
+        }
     }
 }
