@@ -8,7 +8,7 @@
     <title>Pizarra</title>
 </head>
 
-<body class="dark:bg-gray-900">
+<body class="" style="background-image: url('{{ asset('images/fondos/fondo1.jpg') }}')">
 
     @if (Route::has('login'))
     <div class="w-full bg-gray-100 dark:bg-gray-800 p-6 text-right z-10 fixed top-0 left-0">
@@ -23,9 +23,26 @@
     </div>
     @endif
 
-    <div class="pt-24">
-        <h1 class="text-center text-4xl font-bold text-gray-800 dark:text-gray-200">ACA TENER LAS CATEGORIAS PARA Q LAS PUEDAN VER TODOS ANTES DE LOG</h1>
+    <div class="flex flex-col items-center justify-center min-h-screen pt-4">
 
+        <div class="container mx-auto p-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+                @foreach($areas as $area)
+                <?php //print_r($area); 
+                ?>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden min-h-[300px]">
+                    <a href="areas/{{ $area->id }}">
+                        <img src="{{ Storage::url($area->image) }}" alt="{{$area->nombre}}" class="w-full h-64 object-cover">
+                    </a>
+                    <div class="p-4 flex justify-center items-center">
+                        <a href="areas/{{ $area->id }}" class="text-blue-700 inline-block  text-xl font-bold">Entrar al área de {{$area->nombre}}</a>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+
+        </div>
     </div>
 </body>
 
