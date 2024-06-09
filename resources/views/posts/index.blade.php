@@ -36,10 +36,9 @@
                             <td class="w-1/12 py-3 px-4 text-center">{{ $post->created_at }}</td>
                             <td class="w-1/12 py-3 px-4 text-center">{{ $post->updated_at }}</td>
                             <td class="w-1/12 py-3 px-4 text-center">
-                                <label class="inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" value="" class="sr-only peer">
+                                <label class="inline-flex items-center cursor-not-allowed">
+                                    <input type="checkbox" class="sr-only peer" {{ $post->publicado ? 'checked' : '' }} disabled>
                                     <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                                    <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                                 </label>
                             </td>
                             <td class="w-3/12 py-3 px-4 text-center">
@@ -48,7 +47,7 @@
                                     <form action="{{ route('posts.destroy', $post->id) }}" method="POST" class="inline-block">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="button" onclick="confirmDelete('{{$post->id}}')" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Eliminar</button>
+                                        <button type="button" onclick="confirmDelete('{{ $post->id }}')" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Eliminar</button>
                                     </form>
                                 </div>
                             </td>
@@ -59,6 +58,7 @@
             </div>
         </div>
     </div>
+
 
     <script>
         function confirmDelete(id) {
