@@ -7,13 +7,15 @@
             <a href="{{ route('areas.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 Crear Area
             </a>
+
         </div>
     </x-slot>
 
-
+    @section('content')
     <div class="flex flex-col items-center justify-center pt-4">
         <div class="container mx-auto p-4">
             <div class="overflow-x-auto w-full">
+
                 <table class="min-w-full bg-white">
                     <thead class="bg-gray-800 text-white">
                         <tr>
@@ -48,6 +50,7 @@
             </div>
         </div>
     </div>
+    @endsection
 
 
 </x-app-layout>

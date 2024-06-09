@@ -4,6 +4,7 @@
             {{ __('Editar Área') }}
         </h2>
     </x-slot>
+    @section('content')
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-12">
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200">
@@ -32,4 +33,5 @@
             </div>
         </div>
     </div>
+    @endsection
 </x-app-layout>
