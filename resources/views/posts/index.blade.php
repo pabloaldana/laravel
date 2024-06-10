@@ -20,6 +20,7 @@
                             <th class="w-2/12 py-3 px-4 uppercase font-semibold text-sm text-center">Título</th>
                             <th class="w-3/12 py-3 px-4 uppercase font-semibold text-sm text-center">Texto</th>
                             <th class="w-1/12 py-3 px-4 uppercase font-semibold text-sm text-center">Grado</th>
+                            <th class="w-1/12 py-3 px-4 uppercase font-semibold text-sm text-center">Área</th>
                             <th class="w-1/12 py-3 px-4 uppercase font-semibold text-sm text-center">Creado</th>
                             <th class="w-1/12 py-3 px-4 uppercase font-semibold text-sm text-center">Última edición</th>
                             <th class="w-1/12 py-3 px-4 uppercase font-semibold text-sm text-center">Habilitado</th>
@@ -33,6 +34,7 @@
                             <td class="w-2/12 py-3 px-4 text-center">{{ $post->titulo }}</td>
                             <td class="w-3/12 py-3 px-4 text-center">{{ $post->texto }}</td>
                             <td class="w-1/12 py-3 px-4 text-center">{{ $post->grado }}</td>
+                            <td class="w-1/12 py-3 px-4 text-center">{{ $post->area->nombre }}</td>
                             <td class="w-1/12 py-3 px-4 text-center">{{ $post->created_at }}</td>
                             <td class="w-1/12 py-3 px-4 text-center">{{ $post->updated_at }}</td>
                             <td class="w-1/12 py-3 px-4 text-center">
