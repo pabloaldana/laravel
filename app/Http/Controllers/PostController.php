@@ -39,8 +39,10 @@ class PostController extends Controller
             'texto' => 'required|string',
             'grado' => 'required|integer|min:1|max:7',
             'area_id' => 'required|exists:areas,id',
+            'publicado' => 'boolean',
         ]);
 
+        $validated['publicado'] = $request->has('publicado');
         $validated['user_id'] = auth()->id();
 
         $post = Post::create($validated);
@@ -73,26 +75,27 @@ class PostController extends Controller
 
 
     // Actualizar un post existente
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
+        if (!auth()->check()) {
+            return redirect()->route('login')->withErrors('Debe iniciar sesión para modificar un post.');
+        }
+
         $validated = $request->validate([
             'titulo' => 'required|string|max:255',
             'texto' => 'required|string',
             'grado' => 'required|integer|min:1|max:7',
             'area_id' => 'required|exists:areas,id',
-            'publicado' => 'sometimes|boolean', // Validación para el campo publicado
+            'publicado' => 'boolean',
         ]);
 
-        // Actualiza el post con los datos validados
-        $post->update([
-            'titulo' => $validated['titulo'],
-            'texto' => $validated['texto'],
-            'grado' => $validated['grado'],
-            'area_id' => $validated['area_id'],
-            'publicado' => $request->has('publicado') ? true : false, // Si 'publicado' está presente, establece en true; de lo contrario, false
-        ]);
+        // Convertir el valor de 'publicado' a booleano
+        $validated['publicado'] = $request->boolean('publicado');
 
-        return redirect()->route('posts.index')->with('success', 'Post actualizado con éxito');
+        $post = Post::findOrFail($id);
+        $post->update($validated);
+
+        return redirect()->route('posts.index')->with('success', 'Post modificado con éxito');
     }
 
 

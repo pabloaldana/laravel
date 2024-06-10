@@ -7,18 +7,18 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-12">
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200">
-                <h1 class="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-200">Formulario para editar Área</h1>
+                <h1 class="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-200 text-center">Formulario para editar Área</h1>
                 <form method="POST" action="{{ route('areas.update', $area->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT') <!-- Esto se usa para indicar que es una actualización -->
                     <div class="mb-4">
-                        <label for="nombre" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nombre:</label>
-                        <input type="text" id="nombre" name="nombre" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300" value="{{ $area->nombre }}">
+                        <label for="titulo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{ $area->nombre }}">
 
                         <!-- agregar una imagen -->
-                        <div class="form-group mt-4">
-                            <label for="image" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Seleccionar imagen:</label>
-                            <input type="file" id="image" name="image" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300">
+                        <div class="mt-4">
+                            <label for="titulo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Seleccionar imagen</label>
+                            <input type="file" id="image" name="image" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
                         <!-- fin de agregar imagen -->
 
