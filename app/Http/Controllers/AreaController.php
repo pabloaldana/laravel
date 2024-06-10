@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Area;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,10 +16,17 @@ class AreaController extends Controller
 
         return view('areas.index', compact('areas'));
     }
-    public function index1()
+    public function indexWelcome()
     {
         $areas = Area::all();
         return view('welcome', compact('areas'));
+    }
+
+    // Mostrar los detalles de un área específica y sus posts
+    public function show(Area $area)
+    {
+        $posts = Post::where('area_id', $area->id)->get();
+        return view('areas.show', compact('area', 'posts'));
     }
 
     // Mostrar un formulario para crear una nueva área
@@ -55,12 +63,7 @@ class AreaController extends Controller
 
 
     // Mostrar una área específica
-    public function show(Area $area)
-    {
-        //return view('areas.show', compact('area'));
-        return ('Llegaste al show del AreaController');
-    }
-   
+
 
     // Mostrar un formulario para editar una área existente
     public function edit(Area $area)
@@ -94,9 +97,13 @@ class AreaController extends Controller
     }
 
     // Eliminar una área
-    public function destroy(Area $area)
+    public function destroy(string $id)
     {
-        $area->delete();
-        return redirect()->route('areas.index');
+        $area = Area::findOrFail($id);
+        if ($area->delete()) {
+            return response()->json(['success' => 'area deleted successfully.']);
+        } else {
+            return response()->json(['error' => 'Error deleting area.'], 500);
+        }
     }
 }

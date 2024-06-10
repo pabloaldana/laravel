@@ -39,8 +39,10 @@ class PostController extends Controller
             'texto' => 'required|string',
             'grado' => 'required|integer|min:1|max:7',
             'area_id' => 'required|exists:areas,id',
+            'publicado' => 'boolean',
         ]);
 
+        $validated['publicado'] = $request->has('publicado');
         $validated['user_id'] = auth()->id();
 
         $post = Post::create($validated);
@@ -48,15 +50,13 @@ class PostController extends Controller
     }
 
     // Mostrar un post específico
-    public function show(Post $post)
+    public function show($id)
     {
-        if ($post->user_id !== auth()->id()) {
-            return redirect()->route('posts.index')->withErrors('No tienes permiso para ver este post.');
-        }
-
-        //return view('posts.show', compact('post'));
-        return (print_r ($post));
+        $post = Post::findOrFail($id);
+        return view('posts.show', compact('post'));
     }
+
+
 
     // Mostrar un formulario para editar un post existente
     public function edit(Post $post)
@@ -75,17 +75,27 @@ class PostController extends Controller
 
 
     // Actualizar un post existente
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
+        if (!auth()->check()) {
+            return redirect()->route('login')->withErrors('Debe iniciar sesión para modificar un post.');
+        }
+
         $validated = $request->validate([
             'titulo' => 'required|string|max:255',
             'texto' => 'required|string',
             'grado' => 'required|integer|min:1|max:7',
             'area_id' => 'required|exists:areas,id',
+            'publicado' => 'boolean',
         ]);
 
+        // Convertir el valor de 'publicado' a booleano
+        $validated['publicado'] = $request->boolean('publicado');
+
+        $post = Post::findOrFail($id);
         $post->update($validated);
-        return redirect()->route('posts.index')->with('success', 'Post actualizado con éxito');
+
+        return redirect()->route('posts.index')->with('success', 'Post modificado con éxito');
     }
 
 

@@ -2,17 +2,17 @@
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
-            <div class="flex">
+            
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('areas.index') }}"></a>
+                <a href="{{ route('welcome') }}">
 
                     <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
-
+                @auth
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('areas.index')" :active="request()->routeIs('areas.index')">
                         {{ __('Mis Areas') }}
@@ -23,8 +23,12 @@
                         {{ __('Mis Posteos') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('welcome')" :active="request()->routeIs('welcome')">
+                        {{ __('Pizarra') }}
+                    </x-nav-link>
+                </div>
 
-            </div>
 
             <!-- Settings Dropdown -->
             @if (Auth::check())
@@ -70,6 +74,7 @@
                     </svg>
                 </button>
             </div>
+
         </div>
     </div>
 
@@ -105,6 +110,21 @@
                 </form>
             </div>
         </div>
-        @endif
+        @else
+        <div class="flex w-full items-center p-6">
+            <!-- Titulo -->
+            <div class="flex-1 font-2xl justify-center items-center">
+                <h1 class="text-5xl text-blue-600 font-bold text-center"><a href="{{ route('welcome') }}">Blog Áreas Estudiantiles</a></h1>
+            </div>
+
+            <div class="flex items-center space-x-4 ">
+                <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Ingresar</a>
+                @if (Route::has('register'))
+                <a href="{{ route('register') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Registrar</a>
+                @endif
+            </div>
+        </div>
+        @endauth
     </div>
+
 </nav>
