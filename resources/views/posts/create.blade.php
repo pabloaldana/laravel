@@ -13,10 +13,10 @@
                 <form method="POST" action="{{ route('posts.store') }}">
                     @csrf
                     <div class="mb-4">
-                        <label for="titulo" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Titulo:</label>
+                        <label for="titulo" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Titulo</label>
                         <input type="text" id="titulo" name="titulo" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
-                        <label for="grado" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Grado:</label>
+                        <label for="grado" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Grado</label>
                         <select id="grado" name="grado" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option value="">--Seleccione Grado--</option>
                             <option value="1">Primero</option>
@@ -29,7 +29,7 @@
                         </select>
 
                         <div class="mb-4">
-                            <label for="area_id" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Área:</label>
+                            <label for="area_id" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Área</label>
                             <select id="area-select" name="area_id" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option value="">--Seleccione Área--</option>
                                 @foreach($areas as $area)
@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="publicado" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Publicado:</label>
+                            <label for="publicado" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Publicado</label>
                             <label class="inline-flex items-center cursor-pointer">
                                 <input type="checkbox" id="publicado" name="publicado" value="1" class="sr-only peer">
                                 <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
@@ -47,7 +47,7 @@
                             </label>
                         </div>
 
-                        <label for="texto" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Contenido:</label>
+                        <label for="texto" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Contenido</label>
                         <textarea id="texto" name="texto" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" rows="10" cols="50"></textarea>
                     </div>
                     <div class="flex items-center justify-end mt-4">
