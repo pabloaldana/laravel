@@ -32,7 +32,7 @@
                         <tr class="border-b border-gray-200">
                             <td class="w-1/12 py-3 px-4 text-center">{{ $post->id }}</td>
                             <td class="w-2/12 py-3 px-4 text-center">{{ $post->titulo }}</td>
-                            <td class="w-3/12 py-3 px-4 text-center">{{ $post->texto }}</td>
+                            <td class="w-3/12 py-3 px-4 text-center">{!! Str::limit(strip_tags($post->texto), 100) !!}</td>
                             <td class="w-1/12 py-3 px-4 text-center">{{ $post->grado }}</td>
                             <td class="w-1/12 py-3 px-4 text-center">{{ $post->area->nombre }}</td>
                             <td class="w-1/12 py-3 px-4 text-center">{{ $post->created_at }}</td>
