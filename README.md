@@ -40,6 +40,22 @@ php artisan breeze:install
 
 php artisan migrate
 npm install
+```
+
+### Paso 5:
+
+Con el siguiente comando creamos un espejo del storage en la carpeta public para poder manipular las imagenes al momento de guardarlas
+
+```bash
+php artisan storage:link
+```
+
+### Paso 6:
+
+Finalmente ponemos en ejecucion el proyecto para hacer uso de la base de datos y las actualizaciones en tiempo real de las vistas
+
+```bash
+php artisan serve
 npm run dev
 ```
 
