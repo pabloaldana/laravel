@@ -9,12 +9,14 @@
                         @foreach($areas as $area)
                         <div class="bg-white rounded-lg shadow-lg overflow-hidden min-h-[300px]">
                             <a href="{{ route('areas.show', $area->id) }}">
+                                <h1>{{ Storage::url($area->image) }}</h1>
                                 <img src="{{ Storage::url($area->image) }}" alt="{{ $area->nombre }}" class="w-full h-64 object-cover">
                             </a>
                             <div class="p-4 flex justify-center items-center">
                                 <a href="{{ route('areas.show', $area->id) }}" class="text-blue-700 inline-block text-xl font-bold">Entrar al área de {{ $area->nombre }}</a>
                             </div>
                         </div>
+
                         @endforeach
                     </div>
                 </div>
