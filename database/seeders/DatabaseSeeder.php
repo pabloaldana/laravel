@@ -8,7 +8,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,15 +23,15 @@ class DatabaseSeeder extends Seeder
                 'id' => 1,
                 'name' => 'Pablo',
                 'email' => 'pabloaldana.cipo@gmail.com',
-                'password' => bcrypt('123456'),
+                'password' => Hash::make('123456'),//bcrypt('123456'),
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'id' => 3,
                 'name' => 'Percy',
-                'email' => 'praa_nq@hotmail.com',
-                'password' => bcrypt('123456'),
+                'email' => 'praa_nqn@hotmail.com',
+                'password' => Hash::make('qwer1234'),
                 'created_at' => now(),
                 'updated_at' => now(),
             ] 
