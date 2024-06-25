@@ -10,7 +10,7 @@
 
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -36,7 +36,21 @@
         <!-- Page Content -->
         <main>
             {{ $slot }}
+
         </main>
+        <footer class="bg-gray-500 text-white py-4">
+            <div class="container mx-auto flex justify-between items-center">
+                <div class="flex-1"></div>
+                <div class="flex-1 text-center">
+                    PWA 2024 - Todos los derechos reservados
+                </div>
+                <div class="flex-1 text-right">
+                    Integrantes:<br>
+                    -Aldana, Pablo<br>
+                    -Alvarez, Percy 
+                </div>
+            </div>
+        </footer>
     </div>
 </body>
 
